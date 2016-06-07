@@ -54,6 +54,27 @@ defmodule TicTacToeTest do
         }
         TicTacToe.game_over?(vertical) |> equals true
       end
+
+      fact "it finds diagonal wins from the left" do
+        diagonal = %TicTacToe.Board{
+          cells: [:x, nil, nil, nil, :x, nil, nil, nil, :x]
+        }
+        TicTacToe.game_over?(diagonal) |> equals true
+      end
+
+      fact "it finds diagonal wins from the right" do
+        diagonal = %TicTacToe.Board{
+          cells: [nil, nil, :o, nil, :o, nil, :o, nil, nil]
+        }
+        TicTacToe.game_over?(diagonal) |> equals true
+      end
+
+      fact "it rejects diagonal ties" do
+        diagonal = %TicTacToe.Board{
+          cells: [:x, nil, nil, nil, :o, nil, nil, nil, :x]
+        }
+        TicTacToe.game_over?(diagonal) |> equals false
+      end
     end
 
   end
