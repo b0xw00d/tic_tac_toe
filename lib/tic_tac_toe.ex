@@ -7,10 +7,18 @@ defmodule TicTacToe do
   end
 
   def take_turn(board, position) do
+    if Enum.at(board.cells, position) == nil do
+      place_marker(board, position)
+    else
+      {:error, "cell is already taken"}
+    end
+  end
+
+  defp place_marker(board, position) do
     new_board = %Board{
       board |
-      current_turn: +1,
-      cells: List.replace_at(board.cells, position, marker(board.current_turn))
+      cells: List.replace_at(board.cells, position, marker(board.current_turn)),
+      current_turn: +1
     }
     {:ok, new_board}
   end
