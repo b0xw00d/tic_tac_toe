@@ -3,7 +3,7 @@ defmodule TicTacToe do
   @markers [:x, :o]
 
   defmodule Board do
-    defstruct cells: 1..9 |> Enum.map(&(&1 = nil)), current_turn: 0
+    defstruct cells: Enum.map(1..9, &(&1 = nil)), current_turn: 0
   end
 
   def take_turn(board, position) do

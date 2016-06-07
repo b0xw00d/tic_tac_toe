@@ -36,9 +36,5 @@ defmodule TicTacToeTest do
       end
     end
 
-    facts ".game_over?" do
-      
-    end
-
   end
 end
