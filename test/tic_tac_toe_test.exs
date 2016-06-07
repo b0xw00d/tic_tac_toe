@@ -30,9 +30,12 @@ defmodule TicTacToeTest do
         board.cells |> equals [:x, nil, nil, nil, nil, nil, nil, nil, nil]
       end
 
-      fact "allows players to take turns", %{board: board} do
-        {:ok, turn_2} = TicTacToe.take_turn(board, 1)
-        turn_2.cells |> equals [:x, :o, nil, nil, nil, nil, nil, nil, nil]
+      fact "it errors when the cell is already occupied", %{board: board} do
+        TicTacToe.take_turn(board, 0) |> equals {:error, "cell is already taken"}
+      end
+
+      fact "it counts the number of turns", %{board: board} do
+        board.current_turn |> equals 1
       end
     end
 
